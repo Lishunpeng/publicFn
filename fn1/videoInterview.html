@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>就业App</title>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		list-style: none;
+		box-sizing: border-box;
+	}
+	body,html{height: 100%;width: 100%;background: #fff;}
+	button {
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            border: 5px solid #ff6000;
+            display: block;
+            margin: 20px auto;
+        }
+	.sp_bottom{height: 70px;width: 100%;background: rgba(0,0,0,.4);padding: 0 10px;position: fixed;left:0;top: auto;bottom: 0;z-index: 1000000;}
+	.sp_bottom .left{width: auto;float: left;height: 70px;line-height:70px;color: #fff;font-size: 25px;}
+	.sp_bottom .info{float: right;height: 50px;line-height:42px;margin: 10px;border-radius: 5px;color: #fff;border: 3px solid #fff;padding: 0 5px;transition:all 0.3s;}
+	.sp_bottom .cutdown{float: right;background-color: #ff0000;height: 50px;line-height:50px;margin: 10px;border-radius: 5px;color: #fff;padding: 0 5px;transition:all 0.3s;position: relative;}
+	.sp_bottom .cutdown:active{background: #ff6000;}
+	.sp_bottom .info:active{background: #666;}
+	.sp_bottom .cutdown span{background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAOCAYAAABU4P48AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFCNUZFMzVCNjg5RjExRTg5MTU5QUYzRkNGODU3NTdFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFCNUZFMzVDNjg5RjExRTg5MTU5QUYzRkNGODU3NTdFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUI1RkUzNTk2ODlGMTFFODkxNTlBRjNGQ0Y4NTc1N0UiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUI1RkUzNUE2ODlGMTFFODkxNTlBRjNGQ0Y4NTc1N0UiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4jSRyGAAABY0lEQVR42szWzStEURjH8Xs1SZNQo5QmJUVZYMfKYhaWNCsLLxtrf4JiYWHjD/AvWMhLooTFFE3E0mg2pkYUmlggzPU99UxNk+ve+3S8PPWpae48c36nzjn3uJ7nORGqCd3oRSeSaEOzPGtAHDH5/QdKeMKjfL4VOVzgEu9hA7ghAptwYxjBAFocu3WNM+xhRybhXyawj1Hser9f+5j0y/XVl4N/FLS2skgFBV7y/l8tVGesrOF2bKNfuQ4f8Gz2hM/zsmzIVuX/b8k+KpvUCRQVMz/FDHrQiBjqfZhncXRhGoeK8Y7hmsAriubMN5s1rHXFuIumsaBonLAQOKUY96ZODu6o9Wrh/H1R9NyZwJuKxnMLgXOKngMTeDVi0zLyFgLfYy5iz0ZlPc0HrJ03eZmMW1i7tdJYQykgQ776HHZktlNIyOWkIO/1I2RQdH62zAVqCMPoQ4dcrMwZfoJZXH0KMAAcuJkAPhGyewAAAABJRU5ErkJggg==) no-repeat center;
+	background-size: 100% 100%;display: inline-block;width: 30px;height: 10px;margin-right: 5px;}
+	.sp_bottom .alertBox{width: 100px;height: 100px;background: #ff6000;top: 0px;left: 0px;display: none;}
+	.sp_bottom .info span{background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAeCAYAAACxHzfjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjAwNEQ1RTFENjg5RjExRTg5RTM3OTdFRkJGNjRENUM1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjAwNEQ1RTFFNjg5RjExRTg5RTM3OTdFRkJGNjRENUM1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDA0RDVFMUI2ODlGMTFFODlFMzc5N0VGQkY2NEQ1QzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDA0RDVFMUM2ODlGMTFFODlFMzc5N0VGQkY2NEQ1QzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5ElB8+AAACrklEQVR42rzXzUsUcRjA8Z3dZaOoINHesMJD0SHr0MspEjIqokLIsDpEHexQ0N+Rh4KQhF48dQhKpBejQy9Q9GJkZXooiw5pqRUmGvm2rtP3iUdYpp2dnd/M7AOfg7POj2fm9/I8Y9m2HfOIONZiL7ZjNebgBzpwBw8wHosqJEkPB9GBEfv/mEQ/GrG8gLGMeP1DPfps75jATZQUO8lqvLP9xVmkwk7SclmTCTTjKCwfq2cQ+/Eq69oqnEClwWrsw6Wky4+bsNlnghJlqEU3JvTaKZzWzWYSi+MuP2zFUoMBE3rvvKxrVQESlKh2S3IJ5hsOWorsGbqFUcOxMmhJxqKPKxjBGoN7+/MlKQf1H6QMBh7SN5A91oUgT+k23S/w3WC8GTzDWJhT4ZbkS7yWguRzvJ+4EXaJdJvuaVzFBqwrtMLiOrpy7PiVWGiQnzzsF6/T/iQGCqg0U7iL0hxj7EI7pg18wjGvJJM4jE4MY0wTSmtz8RuDuIhylzHa7GDxwesIkmm/hvvYgp16lKR0/T3HQ3zGZFRnmFeSllaLjJ5Z3bpOZpPswbCuO8tlozVqudxokJ88fIOVp+mVTXMA26R+aiIpZWniUp/T+hbfoE2lHS9iheHGkaOsN1eS5ahHDSqwwEcJ+4p2NOFJVJ15JVp0QwSJLtQhEXbTW4FWO7z4iH1hJDo73bLeLuN4yBtTDvZDeO+4Phd7dL3ni4F/BYIk46jFuB1NnMcix9up0YPaKzJyBsf04+kpZiJKcghVjiTP+bj/V1w76fUGnwqFRgl2OJroTh9d1iM5w47oGoky5DhrxVv9+7Ymvdvjvl5pmmXjSCVZVoQOXTbKPdN+crQICUpFmgrS9DZpHY4q0tqb9gRpMJp1fdTpl17GoCN3+7yVN/gYZ/DNdKC/AgwAo5+GeBxcA0UAAAAASUVORK5CYII=) no-repeat center;
+	background-size: 100% 100%;display: inline-block;width: 30px;height: 20px;margin-right: 5px;position: relative;top: 6px;}
+
+	.sp_bottom .cutdown{float: right;}
+	/*iframe.playBox{position:fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 10;}*/
+	/*iframe.pushBox{position:fixed;left: auto;right: 30px;top: 30px;width: 140px;height: 200px;border: 2px solid #e1e1e1;border-radius: 10px;z-index: 11;}*/
+	div.inputBox{z-index:12;position:fixed;left: 0;top: 0;height: 500px;width: 100%}
+</style>
+
+<body>
+<!-- <iframe class="playBox" name="playBox" id="playBox"></iframe> -->
+<!-- <iframe class="pushBox" name="pushBox" id="pushBox"></iframe> -->
+<div id="inputBox" class="inputBox">
+    <!--<button type="button" name="button" onclick="company()">
+	  	企业点击
+    </button>
+    <button type="button" name="button" onclick="person()">
+    	个人点击
+   </button>-->
+</div>
+<div class="sp_bottom">
+	<div class="left">00:00</div>
+	<div class="cutdown" onclick="stopAll()">
+		<span></span>挂断
+	</div>
+	<div class="info" onclick="alertBox(this)">
+		<span></span>信息
+		<div class="alertBox"></div>
+	</div>
+</div>
+</body>
+<script src="api.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="onlineMs.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	var TimeOut = 1000;//一秒一次请求
+	var myfun = new myFn();
+	var isCompany = myfun.getUrlParms('isCompany');
+	var _id = myfun.getUrlParms('id');
+	var timer = null;
+	console.log(_id,'_id');
+	console.log(isCompany,'isCompany');
+	
+	if(parseInt(isCompany)==1){
+		timer = setInterval(company,TimeOut);
+	}else{
+		timer = setInterval(person,TimeOut);
+	}
+	
+	function alertBox(){
+		myfun.alertBox(isCompany);
+	}
+	function stopAll(){
+		if(parseInt(isCompany)==1){
+			myfun.comNext();
+		}else{
+			myfun.stopAll();
+			alert('您手动关闭视频，正在跳转回首页！');
+			location.href = "../index.html";
+		}
+		
+	}
+	
+	function company(){
+		console.log('function in company');
+		myfun.getAjax({path:'/app/interviewCompanyMessage/'+_id},function(res){
+			if(!res.content.state){
+				alert('这场面试结束，请重新申请！');
+				myfun.stopAll();
+				history.back(-1);
+			}
+			myfun.useMsFn(res.content.push_flow,res.content.play_flow);
+			myfun.timeToShow(res.content.remainingTime);
+			myfun.comInfo = {
+				peopleName:res.content.peopleName,
+				workName:res.content.workName,
+				peopleNum:res.content.peopleNum
+			}
+		});
+	}
+	
+	function person(){
+		myfun.getAjax({path:'/app/interviewPersonalMessage/'+_id},function(res){
+			if(!res.content.toYou){
+				myfun.stopAll();
+				history.back(-1);
+				setTimeout(function(){
+					alert('面试已结束！');					
+				})
+			}
+			myfun.useMsFn(res.content.push_flow,res.content.play_flow);
+			myfun.timeToShow(res.content.remainingTime);
+			myfun.personInfo = {
+				companyName:res.content.companyName,
+				workName:res.content.workName,
+				peopleNum:res.content.peopleNum
+			}
+		});
+	}
+	
+	var txLive = null;
+	apiready = function() {
+		api.addEventListener({
+			name: 'keyback'
+		}, function(ret, err) {
+			if(txLive){
+				// document.getElementById("pushBox").remove();
+				txLive.stopPush();
+				txLive.stopPlay();
+				txLive.hidePlayer();
+			}
+			clearInterval(timer);
+			history.back(-1);
+		});
+	}
+</script>
+
+</html>
